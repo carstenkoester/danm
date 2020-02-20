@@ -2,3 +2,8 @@ bin/
 pkg/crd/apis/danm/*/zz_generated.deepcopy.go
 pkg/crd/client/
 pkg/vendor/
+integration/docker/netwatcher/netwatcher
+integration/docker/svcwatcher/svcwatcher
+integration/docker/webhook/webhook
+vendor/
+integration/manifests/webhook/webhook-ca-bundle.yaml
