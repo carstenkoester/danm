@@ -1,0 +1,7 @@
+*.md
+*.sh
+scm/
+integration/
+example/
+*.png
+*.svg
