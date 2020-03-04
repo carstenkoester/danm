@@ -13,3 +13,4 @@ go install -a -ldflags "-extldflags '-static' -X main.version=${LATEST_TAG} -X m
 go install -a -ldflags "-extldflags '-static' -X main.version=${LATEST_TAG} -X main.commitHash=${COMMIT_HASH}" github.com/nokia/danm/cmd/webhook
 go install -a -ldflags "-extldflags '-static'" github.com/nokia/danm/cmd/fakeipam
 go install -a -ldflags "-extldflags '-static'" github.com/nokia/danm/cmd/cnitest
+go install -a -ldflags "-extldflags '-static'" github.com/containernetworking/plugins/plugins/main/macvlan
