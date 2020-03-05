@@ -9,6 +9,8 @@ ENV GOROOT=/usr/local/go
 ENV PATH ${GOPATH}/bin:/usr/local/go/bin:$PATH
 ENV GO_VERSION 1.12.9
 ENV GOOS linux
+ENV CGO_ENABLED 0
+ENV GOARCH amd64
 
 RUN apk add --no-cache ca-certificates \
  && apk update --no-cache \
@@ -103,8 +105,14 @@ ENTRYPOINT ["/usr/local/bin/webhook"]
 
 
 
-FROM scratch AS danmbin
+FROM alpine:latest AS danmcni
 
-COPY --from=builder /go/bin/danm /danm
-COPY --from=builder /go/bin/fakeipam /fakeipam
-COPY --from=builder /go/bin/macvlan /macvlan
+VOLUME ["/cni"]
+
+RUN mkdir /cnibin
+
+COPY --from=builder /go/bin/danm /cnibin/danm
+COPY --from=builder /go/bin/fakeipam /cnibin/fakeipam
+COPY --from=builder /go/bin/macvlan /cnibin/macvlan
+
+CMD [ "sh", "-c", "cp -fa /cnibin/* /cni/ && sleep infinity" ]
